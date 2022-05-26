@@ -45,12 +45,6 @@ function init() {
     displayState();
 } 
 
-startBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    state = "quiz";
-    displayState();
-    setTime();
-});
 
 var timeLeft = 5;
 //   Note to self: Remember to set time back to 60
@@ -59,7 +53,7 @@ function setTime() {
     var timeInterval = setInterval(function () {
         timerEl.textContent = "Time Left: " + timeLeft;
         timeLeft--;
-
+        
         if (timeLeft === 0) {
             clearInterval(timeInterval);
             state = "end";
@@ -67,6 +61,13 @@ function setTime() {
         }
     }, 1000)
 }
+
+startBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    state = "quiz";
+    displayState();
+    setTime();
+});
 
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
@@ -77,6 +78,5 @@ scoreBtn.addEventListener("click", function (event) {
     state = "score";
     displayState();
 });
-
 
 init();
