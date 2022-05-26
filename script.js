@@ -11,7 +11,7 @@ var initials = document.querySelector("#initials");
 // Local memory of all highscores
 var pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-// Instructor Provided Code: Anthony Cooper
+// Instructor Provided Code (functions displayState and init): Anthony Cooper
 var state = "start"
 
 function displayState() {
@@ -43,7 +43,7 @@ function displayState() {
 
 function init() {
     displayState();
-}
+} 
 
 startBtn.addEventListener("click", function (event) {
     event.preventDefault();
@@ -57,9 +57,8 @@ var timeLeft = 5;
 
 function setTime() {
     var timeInterval = setInterval(function () {
-        timeLeft--;
         timerEl.textContent = "Time Left: " + timeLeft;
-        // Note to self: Timer currently displays as 59 instead of 60
+        timeLeft--;
 
         if (timeLeft === 0) {
             clearInterval(timeInterval);
