@@ -26,6 +26,7 @@ function displayState() {
         quizScreen.style.display = "block";
         endScreen.style.display = "none";
         scoreScreen.style.display = "none";
+        showQuiz();
     }
     if (state === "end") {
         startScreen.style.display = "none";
@@ -46,7 +47,7 @@ function init() {
 } 
 
 
-var timeLeft = 5;
+var timeLeft = 15;
 //   Note to self: Remember to set time back to 60
 
 function setTime() {
@@ -62,10 +63,66 @@ function setTime() {
     }, 1000)
 }
 
+
+var title = document.querySelector("#question-title");
+var answerA = document.querySelector("#answerA");
+var answerB = document.querySelector("#answerB");
+var answerC = document.querySelector("#answerC");
+var answerD = document.querySelector("#answerD");
+var answerBtns = document.querySelector(".choice");
+
+var questionList = [
+    "Who?",
+    "What?",
+    "When?"
+];
+var option1 = [
+    "Who? A",
+    "What? A",
+    "When? A"
+];
+var option2 = [
+    "Who? B",
+    "What? B",
+    "When? B"
+];
+var option3 = [
+    "Who? C",
+    "What? C",
+    "When? C"
+];
+var option4 = [
+    "Who? D",
+    "What? D",
+    "When? D"
+];
+
+var position = 0;
+
+function showQuiz() {
+    title.textContent = "";
+    title.textContent = questionList[position];
+}
+
+title.addEventListener('click', function(event){
+    var element = event.target;
+    if (element.matches("h2")){
+        position++;
+        if (position < questionList.length) {
+            showQuiz();
+        } else {
+            clearInterval(timeInterval);
+            state = "end";
+            displayState();
+        }
+    }
+})
+
 startBtn.addEventListener("click", function (event) {
     event.preventDefault();
     state = "quiz";
     displayState();
+    // Move set time to showQuiz?
     setTime();
 });
 
