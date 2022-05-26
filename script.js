@@ -8,6 +8,41 @@ var scoreBtn = document.querySelector("#to-scoreboard");
 var timerEl = document.querySelector("#timer");
 var initials = document.querySelector("#initials");
 
+var title = document.querySelector("#question-title");
+var answerA = document.querySelector("#answerA");
+var answerB = document.querySelector("#answerB");
+var answerC = document.querySelector("#answerC");
+var answerD = document.querySelector("#answerD");
+var answerBtns = document.querySelector(".choice");
+
+var questionList = [
+    "Who?",
+    "What?",
+    "When?"
+];
+var option1 = [
+    "Who? A",
+    "What? A",
+    "When? A"
+];
+var option2 = [
+    "Who? B",
+    "What? B",
+    "When? B"
+];
+var option3 = [
+    "Who? C",
+    "What? C",
+    "When? C"
+];
+var option4 = [
+    "Who? D",
+    "What? D",
+    "When? D"
+];
+
+var position = 0;
+
 // Local memory of all highscores
 var pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
@@ -44,74 +79,41 @@ function displayState() {
 
 function init() {
     displayState();
-} 
-
+}
 
 var timeLeft = 15;
 //   Note to self: Remember to set time back to 60
 
-function setTime() {
+function showTime() {
     var timeInterval = setInterval(function () {
         timerEl.textContent = "Time Left: " + timeLeft;
         timeLeft--;
-        
+
         if (timeLeft === 0) {
             clearInterval(timeInterval);
             state = "end";
             displayState();
         }
+
+        if (position === questionList.length){
+            clearInterval(timeInterval);
+        }
     }, 1000)
 }
-
-
-var title = document.querySelector("#question-title");
-var answerA = document.querySelector("#answerA");
-var answerB = document.querySelector("#answerB");
-var answerC = document.querySelector("#answerC");
-var answerD = document.querySelector("#answerD");
-var answerBtns = document.querySelector(".choice");
-
-var questionList = [
-    "Who?",
-    "What?",
-    "When?"
-];
-var option1 = [
-    "Who? A",
-    "What? A",
-    "When? A"
-];
-var option2 = [
-    "Who? B",
-    "What? B",
-    "When? B"
-];
-var option3 = [
-    "Who? C",
-    "What? C",
-    "When? C"
-];
-var option4 = [
-    "Who? D",
-    "What? D",
-    "When? D"
-];
-
-var position = 0;
 
 function showQuiz() {
     title.textContent = "";
     title.textContent = questionList[position];
+
 }
 
-title.addEventListener('click', function(event){
+title.addEventListener('click', function (event) {
     var element = event.target;
-    if (element.matches("h2")){
+    if (element.matches("h2")) {
         position++;
         if (position < questionList.length) {
             showQuiz();
         } else {
-            clearInterval(timeInterval);
             state = "end";
             displayState();
         }
@@ -120,10 +122,9 @@ title.addEventListener('click', function(event){
 
 startBtn.addEventListener("click", function (event) {
     event.preventDefault();
+    showTime();
     state = "quiz";
     displayState();
-    // Move set time to showQuiz?
-    setTime();
 });
 
 scoreBtn.addEventListener("click", function (event) {
