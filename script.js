@@ -8,8 +8,8 @@ var scoreBtn = document.querySelector("#to-scoreboard");
 var timerEl = document.querySelector("#timer");
 var initials = document.querySelector("#initials");
 
-// Local memory of one highscore
-var pastScores = localStorage.getItem("highscores") || "";
+// Local memory of all highscores
+var pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 // Instructor Provided Code: Anthony Cooper
 var state = "start"
@@ -71,8 +71,10 @@ function setTime() {
 
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    var highscore = initials.value.trim() + " — " + timeLeft;
-    localStorage.setItem("highscores", highscore);
+    var userScore = initials.value.trim() + " — " + timeLeft;
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    highscores.push(userScore);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
     state = "score";
     displayState();
 });
