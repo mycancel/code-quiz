@@ -13,7 +13,6 @@ var answerA = document.querySelector("#answerA");
 var answerB = document.querySelector("#answerB");
 var answerC = document.querySelector("#answerC");
 var answerD = document.querySelector("#answerD");
-var answerBtns = document.querySelector(".choice");
 
 var questionList = [
     "Who?",
@@ -113,12 +112,51 @@ function showQuiz() {
     answerB.textContent = option2[position];
     answerC.textContent = option3[position];
     answerD.textContent = option4[position];
-
 }
 
-title.addEventListener('click', function (event) {
+// Note to self: current problem is that we cannot use an event listener on answer buttons.
+answerA.addEventListener('click', function (event) {
     var element = event.target;
-    if (element.matches("h2")) {
+    if (element.matches("li")) {
+        position++;
+        if (position < questionList.length) {
+            showQuiz();
+        } else {
+            state = "end";
+            displayState();
+        }
+    }
+})
+
+answerB.addEventListener('click', function (event) {
+    var element = event.target;
+    if (element.matches("li")) {
+        position++;
+        if (position < questionList.length) {
+            showQuiz();
+        } else {
+            state = "end";
+            displayState();
+        }
+    }
+})
+
+answerC.addEventListener('click', function (event) {
+    var element = event.target;
+    if (element.matches("li")) {
+        position++;
+        if (position < questionList.length) {
+            showQuiz();
+        } else {
+            state = "end";
+            displayState();
+        }
+    }
+})
+
+answerD.addEventListener('click', function (event) {
+    var element = event.target;
+    if (element.matches("li")) {
         position++;
         if (position < questionList.length) {
             showQuiz();
