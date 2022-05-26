@@ -97,13 +97,22 @@ function showTime() {
 
         if (position === questionList.length){
             clearInterval(timeInterval);
+            console.log(timeLeft);
         }
     }, 1000)
 }
 
 function showQuiz() {
     title.textContent = "";
+    answerA.textContent = "";
+    answerB.textContent = "";
+    answerC.textContent = "";
+    answerD.textContent = "";
     title.textContent = questionList[position];
+    answerA.textContent = option1[position];
+    answerB.textContent = option2[position];
+    answerC.textContent = option3[position];
+    answerD.textContent = option4[position];
 
 }
 
