@@ -30,6 +30,12 @@ function displayState() {
     displayState();
   }
 
+  startBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    state = "quiz";
+    
+  });
+
 
 
   init();
