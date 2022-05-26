@@ -1,65 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
 </head>
+
 <body>
-    <header>
-        <button>High Scores</button>
-    </header>
+    <section id="beginning">
+        <h1>Coding Quiz</h1>
+        <p>Try to complete the quiz before the timer runs out! 
+        The timer is decreased by 10 seconds for every incorrect answer.
+        </p>
+        <button id="start">Start</button>
+        <button id="beginning-to-scoreboard">Scoreboard</button>
+    </section>
 
-    <main>
-        <div>
-            <h1>Coding Quiz</h1>
-            <p>Try to complete the quiz before the timer runs out!
-                The timer is decreased by 5 seconds for every incorrect answer.
-            </p>
-            <button>Start</button>
-        </div>
+    <div id="quiz">
+        <h2 id="question-title"></h2>
+        <ul>
+            <li id="answerA"></li>
+            <li id="answerB"></li>
+            <li id="answerC"></li>
+            <li id="answerD"></li>
+        </ul>
+    </div>
 
-        <div>
-            <h2>Question 1</h2>
-            <ul>
-                <li>A</li>
-                <li>B</li>
-                <li>C</li>
-                <li>D</li>
-            </ul>
-        </div>
-
-        <div>
-            <h2>Question 2</h2>
-            <ul>
-                <li>E</li>
-                <li>F</li>
-                <li>G</li>
-                <li>H</li>
-            </ul>
-        </div>
-
-        <div>
-            <h2>Question 3</h2>
-            <ul>
-                <li>A</li>
-                <li>B</li>
-                <li>C</li>
-                <li>D</li>
-            </ul>
-        </div>
-
-        <form>
-            <h2>Quiz Completed!</h2>
-            <label for="scoreboard">Enter your Initials: </label>
-            <input type="text">
-            <button type="submit">Submit</button>
-        </form>
-    </main>
-
-    <footer>
-
-    </footer>
+    <form id="ending">
+        <h2>Quiz Completed!</h2>
+        <label for="initials">Enter your Initials: </label>
+        <input type="text" id="initials">
+        <button type="submit">Submit</button>
+    </form>
 </body>
+
 </html>
