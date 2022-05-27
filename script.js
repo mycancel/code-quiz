@@ -165,7 +165,7 @@ startBtn.addEventListener("click", function (event) {
 
 answerA.addEventListener('click', function (event) {
     var element = event.target;
-    if (element.matches("li")) {
+    if (element.matches("button")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -177,7 +177,7 @@ answerA.addEventListener('click', function (event) {
 
 answerB.addEventListener('click', function (event) {
     var element = event.target;
-    if (element.matches("li")) {
+    if (element.matches("button")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -189,7 +189,7 @@ answerB.addEventListener('click', function (event) {
 
 answerC.addEventListener('click', function (event) {
     var element = event.target;
-    if (element.matches("li")) {
+    if (element.matches("button")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -201,7 +201,7 @@ answerC.addEventListener('click', function (event) {
 
 answerD.addEventListener('click', function (event) {
     var element = event.target;
-    if (element.matches("li")) {
+    if (element.matches("button")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
