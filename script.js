@@ -1,13 +1,18 @@
+// Selected each screen/state
 var startScreen = document.querySelector("#beginning");
 var quizScreen = document.querySelector("#quiz");
 var endScreen = document.querySelector("#ending");
 var scoreScreen = document.querySelector("#scoreboard");
+var state = "start";
+
+// Selected buttons at start and end
 var startBtn = document.querySelector("#start");
 var scoreBtn = document.querySelector("#to-scoreboard");
-
-var timerEl = document.querySelector("#timer");
 var initials = document.querySelector("#initials");
 
+// Selected items in the quiz
+var timerEl = document.querySelector("#timer");
+var timeLeft = 60;
 var title = document.querySelector("#question-title");
 var answerA = document.querySelector("#answerA");
 var answerB = document.querySelector("#answerB");
@@ -15,6 +20,8 @@ var answerC = document.querySelector("#answerC");
 var answerD = document.querySelector("#answerD");
 var reward = document.querySelector("#reward");
 
+// Questions and answers
+var position = 0;
 var questionList = [
     "Who?",
     "What?",
@@ -56,13 +63,14 @@ var option4 = [
     "So What?"
 ];
 
-var position = 0;
-
 // Local memory of all highscores
 var pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
+
 // Instructor Provided Code (functions displayState and init): Anthony Cooper
-var state = "start";
+function init() {
+    displayState();
+};
 
 function displayState() {
     if (state === "start") {
@@ -76,6 +84,7 @@ function displayState() {
         quizScreen.style.display = "block";
         endScreen.style.display = "none";
         scoreScreen.style.display = "none";
+        showTime();
         showQuiz();
     }
     if (state === "end") {
@@ -92,12 +101,6 @@ function displayState() {
         showScore();
     }
 };
-
-function init() {
-    displayState();
-};
-
-var timeLeft = 60;
 
 function showTime() {
     var timeInterval = setInterval(function () {
@@ -156,9 +159,10 @@ function showScore() {
     
 };
 
+
+// Event Listeners
 startBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    showTime();
     state = "quiz";
     displayState();
 });
