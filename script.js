@@ -11,8 +11,9 @@ var scoreBtn = document.querySelector("#to-scoreboard");
 var backToStart = document.querySelector("#to-start");
 var backToScores = document.querySelector("#scores-from-start");
 
-// Initials input
+// Initials input and score div
 var initials = document.querySelector("#initials");
+var scoreList = document.querySelector("#scoreList");
 
 // Selected items in the quiz
 var timerEl = document.querySelector("#timer");
@@ -104,6 +105,7 @@ function displayState() {
         quizScreen.style.display = "none";
         endScreen.style.display = "none";
         scoreScreen.style.display = "block";
+        scoreList.innerHTML = "";
         showScore();
     }
 };
@@ -164,7 +166,7 @@ function showScore() {
 
     for (var i = 0; i < highscores.length; i++) {
         var scoreEl = document.createElement("p");
-        scoreScreen.appendChild(scoreEl);
+        scoreList.appendChild(scoreEl);
         scoreEl.textContent = highscores[i];
     }
 };
@@ -240,5 +242,11 @@ backToStart.addEventListener("click", function(event) {
     state = "start";
     displayState();
 });
+
+backToScores.addEventListener("click", function(event){
+    event.preventDefault();
+    state = "score";
+    displayState();
+})
 
 init();
