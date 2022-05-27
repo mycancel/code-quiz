@@ -155,7 +155,12 @@ function showQuiz() {
 
 function showScore() {
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-    highscores.sort()
+
+    for (var i = 0; i < highscores.length; i++) {
+        var scoreEl = document.createElement("p");
+        scoreScreen.appendChild(scoreEl);
+        scoreEl.textContent = highscores[i];
+    }
     
 };
 
