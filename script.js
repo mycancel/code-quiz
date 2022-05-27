@@ -13,6 +13,7 @@ var answerA = document.querySelector("#answerA");
 var answerB = document.querySelector("#answerB");
 var answerC = document.querySelector("#answerC");
 var answerD = document.querySelector("#answerD");
+var reward = document.querySelector("#reward");
 
 var questionList = [
     "Who?",
@@ -107,6 +108,20 @@ function showQuiz() {
     answerB.textContent = "";
     answerC.textContent = "";
     answerD.textContent = "";
+
+    if (position === 1 && answerA.dataset.clicked === "true") {
+        reward.textContent = "Correct";
+        console.log("correct 1");
+    } else if (position === 1) {
+        reward.textContent = "Incorrect";
+        console.log("wrong 1");
+    };
+
+    answerA.dataset.clicked = "false";
+    answerB.dataset.clicked = "false";
+    answerC.dataset.clicked = "false";
+    answerD.dataset.clicked = "false";
+
     title.textContent = questionList[position];
     answerA.textContent = option1[position];
     answerB.textContent = option2[position];
@@ -114,14 +129,18 @@ function showQuiz() {
     answerD.textContent = option4[position];
 }
 
-// Note to self: current problem is that we cannot use an event listener on answer buttons.
 answerA.addEventListener('click', function (event) {
     var element = event.target;
     if (element.matches("li")) {
         position++;
+        reward.textContent = "";
         if (position < questionList.length) {
+            answerA.dataset.clicked = "true";
+            console.log(answerA.dataset.clicked);
             showQuiz();
         } else {
+            answerA.dataset.clicked = "false";
+            console.log(answerA.dataset.clicked);
             state = "end";
             displayState();
         }
@@ -132,9 +151,14 @@ answerB.addEventListener('click', function (event) {
     var element = event.target;
     if (element.matches("li")) {
         position++;
+        reward.textContent = "";
         if (position < questionList.length) {
+            answerB.dataset.clicked = "true";
+            console.log(answerB.dataset.clicked);
             showQuiz();
         } else {
+            answerB.dataset.clicked = "false";
+            console.log(answerB.dataset.clicked);
             state = "end";
             displayState();
         }
@@ -145,9 +169,14 @@ answerC.addEventListener('click', function (event) {
     var element = event.target;
     if (element.matches("li")) {
         position++;
+        reward.textContent = "";
         if (position < questionList.length) {
+            answerC.dataset.clicked = "true";
+            console.log(answerC.dataset.clicked);
             showQuiz();
         } else {
+            answerC.dataset.clicked = "false";
+            console.log(answerC.dataset.clicked);
             state = "end";
             displayState();
         }
@@ -158,9 +187,14 @@ answerD.addEventListener('click', function (event) {
     var element = event.target;
     if (element.matches("li")) {
         position++;
+        reward.textContent = "";
         if (position < questionList.length) {
+            answerD.dataset.clicked = "true";
+            console.log(answerD.dataset.clicked);
             showQuiz();
         } else {
+            answerD.dataset.clicked = "false";
+            console.log(answerD.dataset.clicked);
             state = "end";
             displayState();
         }
