@@ -8,6 +8,10 @@ var state = "start";
 // Selected buttons at start and end
 var startBtn = document.querySelector("#start");
 var scoreBtn = document.querySelector("#to-scoreboard");
+var backToStart = document.querySelector("#to-start");
+var backToScores = document.querySelector("#scores-from-start");
+
+// Initials input
 var initials = document.querySelector("#initials");
 
 // Selected items in the quiz
@@ -78,6 +82,8 @@ function displayState() {
         quizScreen.style.display = "none";
         endScreen.style.display = "none";
         scoreScreen.style.display = "none";
+        position = 0;
+        timeLeft = 60;
     }
     if (state === "quiz") {
         startScreen.style.display = "none";
@@ -161,18 +167,17 @@ function showScore() {
         scoreScreen.appendChild(scoreEl);
         scoreEl.textContent = highscores[i];
     }
-    
 };
 
 
 // Event Listeners
-startBtn.addEventListener("click", function (event) {
+startBtn.addEventListener("click", function(event) {
     event.preventDefault();
     state = "quiz";
     displayState();
 });
 
-answerA.addEventListener('click', function (event) {
+answerA.addEventListener('click', function(event) {
     var element = event.target;
     if (element.matches("button")) {
         position++;
@@ -184,7 +189,7 @@ answerA.addEventListener('click', function (event) {
     }
 });
 
-answerB.addEventListener('click', function (event) {
+answerB.addEventListener('click', function(event) {
     var element = event.target;
     if (element.matches("button")) {
         position++;
@@ -196,7 +201,7 @@ answerB.addEventListener('click', function (event) {
     }
 });
 
-answerC.addEventListener('click', function (event) {
+answerC.addEventListener('click', function(event) {
     var element = event.target;
     if (element.matches("button")) {
         position++;
@@ -208,7 +213,7 @@ answerC.addEventListener('click', function (event) {
     }
 });
 
-answerD.addEventListener('click', function (event) {
+answerD.addEventListener('click', function(event) {
     var element = event.target;
     if (element.matches("button")) {
         position++;
@@ -220,13 +225,19 @@ answerD.addEventListener('click', function (event) {
     }
 });
 
-scoreBtn.addEventListener("click", function (event) {
+scoreBtn.addEventListener("click", function(event) {
     event.preventDefault();
     var userScore = timeLeft + " — " + initials.value.trim();
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     highscores.push(userScore);
     localStorage.setItem("highscores", JSON.stringify(highscores));
     state = "score";
+    displayState();
+});
+
+backToStart.addEventListener("click", function(event) {
+    event.preventDefault();
+    state = "start";
     displayState();
 });
 
