@@ -62,7 +62,7 @@ var position = 0;
 var pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 // Instructor Provided Code (functions displayState and init): Anthony Cooper
-var state = "start"
+var state = "start";
 
 function displayState() {
     if (state === "start") {
@@ -89,12 +89,13 @@ function displayState() {
         quizScreen.style.display = "none";
         endScreen.style.display = "none";
         scoreScreen.style.display = "block";
+        showScore();
     }
-}
+};
 
 function init() {
     displayState();
-}
+};
 
 var timeLeft = 60;
 
@@ -103,18 +104,23 @@ function showTime() {
         timerEl.textContent = timeLeft;
         timeLeft--;
 
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        };
+
         if (timeLeft === 0) {
             clearInterval(timeInterval);
             state = "end";
             displayState();
-        }
+        };
 
         if (position === questionList.length){
             clearInterval(timeInterval);
-            console.log(timeLeft);
-        }
+            state = "end";
+            displayState();
+        };
     }, 1000)
-}
+};
 
 function showQuiz() {
     title.textContent = "";
@@ -123,7 +129,7 @@ function showQuiz() {
     answerC.textContent = "";
     answerD.textContent = "";
 
-    var key = ["", answerA, answerC, answerD, answerB, answerA, answerD]
+    var key = ["", answerA, answerC, answerD, answerB, answerA, answerD];
 
     if (position >= 1 && (key[position]).dataset.clicked === "true") {
         reward.textContent = "Correct";
@@ -142,7 +148,13 @@ function showQuiz() {
     answerB.textContent = option2[position];
     answerC.textContent = option3[position];
     answerD.textContent = option4[position];
-}
+};
+
+function showScore() {
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    highscores.sort()
+    
+};
 
 startBtn.addEventListener("click", function (event) {
     event.preventDefault();
@@ -159,13 +171,9 @@ answerA.addEventListener('click', function (event) {
         if (position < questionList.length) {
             answerA.dataset.clicked = "true";
             showQuiz();
-        } else {
-            answerA.dataset.clicked = "false";
-            state = "end";
-            displayState();
-        }
+        };
     }
-})
+});
 
 answerB.addEventListener('click', function (event) {
     var element = event.target;
@@ -175,13 +183,9 @@ answerB.addEventListener('click', function (event) {
         if (position < questionList.length) {
             answerB.dataset.clicked = "true";
             showQuiz();
-        } else {
-            answerB.dataset.clicked = "false";
-            state = "end";
-            displayState();
-        }
+        };
     }
-})
+});
 
 answerC.addEventListener('click', function (event) {
     var element = event.target;
@@ -191,13 +195,9 @@ answerC.addEventListener('click', function (event) {
         if (position < questionList.length) {
             answerC.dataset.clicked = "true";
             showQuiz();
-        } else {
-            answerC.dataset.clicked = "false";
-            state = "end";
-            displayState();
-        }
+        }; 
     }
-})
+});
 
 answerD.addEventListener('click', function (event) {
     var element = event.target;
@@ -207,17 +207,13 @@ answerD.addEventListener('click', function (event) {
         if (position < questionList.length) {
             answerD.dataset.clicked = "true";
             showQuiz();
-        } else {
-            answerD.dataset.clicked = "false";
-            state = "end";
-            displayState();
-        }
+        };
     }
-})
+});
 
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    var userScore = initials.value.trim() + " — " + timeLeft;
+    var userScore = timeLeft + " — " + initials.value.trim();
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     highscores.push(userScore);
     localStorage.setItem("highscores", JSON.stringify(highscores));
