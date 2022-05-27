@@ -1,0 +1,10 @@
+:root {
+    --offwhite: rgb(220 225 222);
+    --heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--offwhite);
+    margin: 0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
