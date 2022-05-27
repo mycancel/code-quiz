@@ -18,27 +18,42 @@ var reward = document.querySelector("#reward");
 var questionList = [
     "Who?",
     "What?",
-    "When?"
+    "When?",
+    "Where?",
+    "Why?",
+    "So What?"
 ];
 var option1 = [
     "Who? A",
     "What? A",
-    "When? A"
+    "When? A",
+    "Where?",
+    "Why?",
+    "So What?"
 ];
 var option2 = [
     "Who? B",
     "What? B",
-    "When? B"
+    "When? B",
+    "Where?",
+    "Why?",
+    "So What?"
 ];
 var option3 = [
     "Who? C",
     "What? C",
-    "When? C"
+    "When? C",
+    "Where?",
+    "Why?",
+    "So What?"
 ];
 var option4 = [
     "Who? D",
     "What? D",
-    "When? D"
+    "When? D",
+    "Where?",
+    "Why?",
+    "So What?"
 ];
 
 var position = 0;
@@ -81,8 +96,7 @@ function init() {
     displayState();
 }
 
-var timeLeft = 15;
-//   Note to self: Remember to set time back to 60
+var timeLeft = 60;
 
 function showTime() {
     var timeInterval = setInterval(function () {
@@ -109,12 +123,13 @@ function showQuiz() {
     answerC.textContent = "";
     answerD.textContent = "";
 
-    if (position === 1 && answerA.dataset.clicked === "true") {
+    var key = ["", answerA, answerC, answerD, answerB, answerA, answerD]
+
+    if (position >= 1 && (key[position]).dataset.clicked === "true") {
         reward.textContent = "Correct";
-        console.log("correct 1");
-    } else if (position === 1) {
+    } else if (position >= 1) {
         reward.textContent = "Incorrect";
-        console.log("wrong 1");
+        timeLeft = timeLeft - 10;
     };
 
     answerA.dataset.clicked = "false";
@@ -129,6 +144,13 @@ function showQuiz() {
     answerD.textContent = option4[position];
 }
 
+startBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    showTime();
+    state = "quiz";
+    displayState();
+});
+
 answerA.addEventListener('click', function (event) {
     var element = event.target;
     if (element.matches("li")) {
@@ -136,11 +158,9 @@ answerA.addEventListener('click', function (event) {
         reward.textContent = "";
         if (position < questionList.length) {
             answerA.dataset.clicked = "true";
-            console.log(answerA.dataset.clicked);
             showQuiz();
         } else {
             answerA.dataset.clicked = "false";
-            console.log(answerA.dataset.clicked);
             state = "end";
             displayState();
         }
@@ -154,11 +174,9 @@ answerB.addEventListener('click', function (event) {
         reward.textContent = "";
         if (position < questionList.length) {
             answerB.dataset.clicked = "true";
-            console.log(answerB.dataset.clicked);
             showQuiz();
         } else {
             answerB.dataset.clicked = "false";
-            console.log(answerB.dataset.clicked);
             state = "end";
             displayState();
         }
@@ -172,11 +190,9 @@ answerC.addEventListener('click', function (event) {
         reward.textContent = "";
         if (position < questionList.length) {
             answerC.dataset.clicked = "true";
-            console.log(answerC.dataset.clicked);
             showQuiz();
         } else {
             answerC.dataset.clicked = "false";
-            console.log(answerC.dataset.clicked);
             state = "end";
             displayState();
         }
@@ -190,23 +206,14 @@ answerD.addEventListener('click', function (event) {
         reward.textContent = "";
         if (position < questionList.length) {
             answerD.dataset.clicked = "true";
-            console.log(answerD.dataset.clicked);
             showQuiz();
         } else {
             answerD.dataset.clicked = "false";
-            console.log(answerD.dataset.clicked);
             state = "end";
             displayState();
         }
     }
 })
-
-startBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    showTime();
-    state = "quiz";
-    displayState();
-});
 
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
