@@ -85,7 +85,7 @@ var timeLeft = 15;
 
 function showTime() {
     var timeInterval = setInterval(function () {
-        timerEl.textContent = "Time Left: " + timeLeft;
+        timerEl.textContent = timeLeft;
         timeLeft--;
 
         if (timeLeft === 0) {
