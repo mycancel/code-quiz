@@ -62,7 +62,7 @@ const position = 0;
 const pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 // Instructor Provided Code (functions displayState and init): Anthony Cooper
-const state = "start";
+let state = "start";
 
 function displayState() {
     if (state === "start") {
