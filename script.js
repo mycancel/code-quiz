@@ -155,7 +155,7 @@ function showQuiz() {
 function checkAnswer(selected) {
     if (selected === questions[position].answer) {
         reward.textContent = "Correct";
-    } else if (position >= 1) {
+    } else {
         reward.textContent = "Incorrect";
         timeLeft = timeLeft - 10;
     };
