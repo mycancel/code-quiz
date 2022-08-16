@@ -8,17 +8,13 @@ const scoreBtn = document.querySelector("#to-scoreboard");
 const timerEl = document.querySelector("#timer");
 const initials = document.querySelector("#initials");
 
-const title = document.querySelector("#question-title");
-const answerA = document.querySelector("#answerA");
-const answerB = document.querySelector("#answerB");
-const answerC = document.querySelector("#answerC");
-const answerD = document.querySelector("#answerD");
+const questionsEl = document.querySelector("#questions");
 const reward = document.querySelector("#reward");
 
 const questions = [
     {
         question: "Who?",
-        A: "A",
+        A: "A 1",
         B: "B",
         C: "C",
         D: "D",
@@ -26,7 +22,7 @@ const questions = [
     },
     {
         question: "Where?",
-        A: "A",
+        A: "A 2",
         B: "B",
         C: "C",
         D: "D",
@@ -34,7 +30,7 @@ const questions = [
     },
     {
         question: "Why?",
-        A: "A",
+        A: "A 3",
         B: "B",
         C: "C",
         D: "D",
@@ -42,7 +38,7 @@ const questions = [
     },
 ];
 
-const position = 0;
+let position = 0;
 
 // Local memory of all highscores
 const pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -100,7 +96,7 @@ function showTime() {
             displayState();
         };
 
-        if (position === questionList.length){
+        if (position === questions.length){
             clearInterval(timeInterval);
             state = "end";
             displayState();
@@ -109,13 +105,36 @@ function showTime() {
 };
 
 function showQuiz() {
+    // <h2 id="question-title"></h2>
+    // <button id="answerA" class="choice" data-clicked="false"></button>
+    // <button id="answerB" class="choice" data-clicked="false"></button>
+    // <button id="answerC" class="choice" data-clicked="false"></button>
+    // <button id="answerD" class="choice" data-clicked="false"></button>
+
+    // Reset questionsEl
+    questionsEl.innerHTML = null;
+    // Create Elements
+    const title = document.createElement('h2');
+    const answerA = document.createElement('button');
+    const answerB = document.createElement('button');
+    const answerC = document.createElement('button');
+    const answerD = document.createElement('button');
+    // Set text of elements
+    title.innerHTML = questions[position].question;
+    answerA.innerHTML = questions[position].A;
+    answerB.innerHTML = questions[position].B;
+    answerC.innerHTML = questions[position].C;
+    answerD.innerHTML = questions[position].D;
+    // Append elements to questionsEl
+    questionsEl.append(title, answerA, answerB, answerC, answerD);
+
+    // TODO: Set up reward system
+
     // title.textContent = "";
     // answerA.textContent = "";
     // answerB.textContent = "";
     // answerC.textContent = "";
     // answerD.textContent = "";
-
-    // const key = ["", answerA, answerC, answerD, answerB, answerA, answerD];
 
     // if (position >= 1 && (key[position]).dataset.clicked === "true") {
     //     reward.textContent = "Correct";
@@ -148,53 +167,55 @@ startBtn.addEventListener("click", function (event) {
     displayState();
 });
 
-answerA.addEventListener('click', function (event) {
-    const element = event.target;
-    if (element.matches("li")) {
-        position++;
-        reward.textContent = "";
-        if (position < questionList.length) {
-            answerA.dataset.clicked = "true";
-            showQuiz();
-        };
-    }
-});
+// TODO: Add event listener to questionsEl
+// TODO: Fix moving on to the next question
+// answerA.addEventListener('click', function (event) {
+//     const element = event.target;
+//     if (element.matches("li")) {
+//         position++;
+//         reward.textContent = "";
+//         if (position < questionList.length) {
+//             answerA.dataset.clicked = "true";
+//             showQuiz();
+//         };
+//     }
+// });
 
-answerB.addEventListener('click', function (event) {
-    const element = event.target;
-    if (element.matches("li")) {
-        position++;
-        reward.textContent = "";
-        if (position < questionList.length) {
-            answerB.dataset.clicked = "true";
-            showQuiz();
-        };
-    }
-});
+// answerB.addEventListener('click', function (event) {
+//     const element = event.target;
+//     if (element.matches("li")) {
+//         position++;
+//         reward.textContent = "";
+//         if (position < questionList.length) {
+//             answerB.dataset.clicked = "true";
+//             showQuiz();
+//         };
+//     }
+// });
 
-answerC.addEventListener('click', function (event) {
-    const element = event.target;
-    if (element.matches("li")) {
-        position++;
-        reward.textContent = "";
-        if (position < questionList.length) {
-            answerC.dataset.clicked = "true";
-            showQuiz();
-        }; 
-    }
-});
+// answerC.addEventListener('click', function (event) {
+//     const element = event.target;
+//     if (element.matches("li")) {
+//         position++;
+//         reward.textContent = "";
+//         if (position < questionList.length) {
+//             answerC.dataset.clicked = "true";
+//             showQuiz();
+//         }; 
+//     }
+// });
 
-answerD.addEventListener('click', function (event) {
-    const element = event.target;
-    if (element.matches("li")) {
-        position++;
-        reward.textContent = "";
-        if (position < questionList.length) {
-            answerD.dataset.clicked = "true";
-            showQuiz();
-        };
-    }
-});
+// answerD.addEventListener('click', function (event) {
+//     const element = event.target;
+//     if (element.matches("li")) {
+//         position++;
+//         reward.textContent = "";
+//         if (position < questionList.length) {
+//             answerD.dataset.clicked = "true";
+//             showQuiz();
+//         };
+//     }
+// });
 
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
