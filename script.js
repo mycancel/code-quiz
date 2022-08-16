@@ -167,19 +167,16 @@ startBtn.addEventListener("click", function (event) {
     displayState();
 });
 
-// TODO: Add event listener to questionsEl
-// TODO: Fix moving on to the next question
-// answerA.addEventListener('click', function (event) {
-//     const element = event.target;
-//     if (element.matches("li")) {
-//         position++;
-//         reward.textContent = "";
-//         if (position < questionList.length) {
-//             answerA.dataset.clicked = "true";
-//             showQuiz();
-//         };
-//     }
-// });
+questionsEl.addEventListener('click', function (event) {
+    const element = event.target;
+    if (element.matches("button")) {
+        position++;
+        // reward.textContent = "";
+        if (position < questions.length) {
+            showQuiz();
+        };
+    }
+});
 
 // answerB.addEventListener('click', function (event) {
 //     const element = event.target;
@@ -188,30 +185,6 @@ startBtn.addEventListener("click", function (event) {
 //         reward.textContent = "";
 //         if (position < questionList.length) {
 //             answerB.dataset.clicked = "true";
-//             showQuiz();
-//         };
-//     }
-// });
-
-// answerC.addEventListener('click', function (event) {
-//     const element = event.target;
-//     if (element.matches("li")) {
-//         position++;
-//         reward.textContent = "";
-//         if (position < questionList.length) {
-//             answerC.dataset.clicked = "true";
-//             showQuiz();
-//         }; 
-//     }
-// });
-
-// answerD.addEventListener('click', function (event) {
-//     const element = event.target;
-//     if (element.matches("li")) {
-//         position++;
-//         reward.textContent = "";
-//         if (position < questionList.length) {
-//             answerD.dataset.clicked = "true";
 //             showQuiz();
 //         };
 //     }
