@@ -1,33 +1,21 @@
-// Selected each screen/state
-var startScreen = document.querySelector("#beginning");
-var quizScreen = document.querySelector("#quiz");
-var endScreen = document.querySelector("#ending");
-var scoreScreen = document.querySelector("#scoreboard");
-var state = "start";
+const startScreen = document.querySelector("#beginning");
+const quizScreen = document.querySelector("#quiz");
+const endScreen = document.querySelector("#ending");
+const scoreScreen = document.querySelector("#scoreboard");
+const startBtn = document.querySelector("#start");
+const scoreBtn = document.querySelector("#to-scoreboard");
 
-// Selected buttons at start and end
-var startBtn = document.querySelector("#start");
-var scoreBtn = document.querySelector("#to-scoreboard");
-var backToStart = document.querySelector("#to-start");
-var backToScores = document.querySelector("#scores-from-start");
+const timerEl = document.querySelector("#timer");
+const initials = document.querySelector("#initials");
 
-// Initials input and score div
-var initials = document.querySelector("#initials");
-var scoreList = document.querySelector("#scoreList");
+const title = document.querySelector("#question-title");
+const answerA = document.querySelector("#answerA");
+const answerB = document.querySelector("#answerB");
+const answerC = document.querySelector("#answerC");
+const answerD = document.querySelector("#answerD");
+const reward = document.querySelector("#reward");
 
-// Selected items in the quiz
-var timerEl = document.querySelector("#timer");
-var timeLeft = 60;
-var title = document.querySelector("#question-title");
-var answerA = document.querySelector("#answerA");
-var answerB = document.querySelector("#answerB");
-var answerC = document.querySelector("#answerC");
-var answerD = document.querySelector("#answerD");
-var reward = document.querySelector("#reward");
-
-// Questions and answers
-var position = 0;
-var questionList = [
+const questionList = [
     "Who?",
     "What?",
     "When?",
@@ -35,7 +23,7 @@ var questionList = [
     "Why?",
     "So What?"
 ];
-var option1 = [
+const option1 = [
     "Who? A",
     "What? A",
     "When? A",
@@ -43,7 +31,7 @@ var option1 = [
     "Why?",
     "So What?"
 ];
-var option2 = [
+const option2 = [
     "Who? B",
     "What? B",
     "When? B",
@@ -51,7 +39,7 @@ var option2 = [
     "Why?",
     "So What?"
 ];
-var option3 = [
+const option3 = [
     "Who? C",
     "What? C",
     "When? C",
@@ -59,7 +47,7 @@ var option3 = [
     "Why?",
     "So What?"
 ];
-var option4 = [
+const option4 = [
     "Who? D",
     "What? D",
     "When? D",
@@ -68,14 +56,13 @@ var option4 = [
     "So What?"
 ];
 
-// Local memory of all highscores
-var pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
+const position = 0;
 
+// Local memory of all highscores
+const pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 // Instructor Provided Code (functions displayState and init): Anthony Cooper
-function init() {
-    displayState();
-};
+const state = "start";
 
 function displayState() {
     if (state === "start") {
@@ -83,15 +70,12 @@ function displayState() {
         quizScreen.style.display = "none";
         endScreen.style.display = "none";
         scoreScreen.style.display = "none";
-        position = 0;
-        timeLeft = 60;
     }
     if (state === "quiz") {
         startScreen.style.display = "none";
         quizScreen.style.display = "block";
         endScreen.style.display = "none";
         scoreScreen.style.display = "none";
-        showTime();
         showQuiz();
     }
     if (state === "end") {
@@ -105,13 +89,18 @@ function displayState() {
         quizScreen.style.display = "none";
         endScreen.style.display = "none";
         scoreScreen.style.display = "block";
-        scoreList.innerHTML = "";
         showScore();
     }
 };
 
+function init() {
+    displayState();
+};
+
+let timeLeft = 60;
+
 function showTime() {
-    var timeInterval = setInterval(function () {
+    const timeInterval = setInterval(function () {
         timerEl.textContent = timeLeft;
         timeLeft--;
 
@@ -140,7 +129,7 @@ function showQuiz() {
     answerC.textContent = "";
     answerD.textContent = "";
 
-    var key = ["", answerA, answerC, answerD, answerB, answerA, answerD];
+    const key = ["", answerA, answerC, answerD, answerB, answerA, answerD];
 
     if (position >= 1 && (key[position]).dataset.clicked === "true") {
         reward.textContent = "Correct";
@@ -162,26 +151,20 @@ function showQuiz() {
 };
 
 function showScore() {
-    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-
-    for (var i = 0; i < highscores.length; i++) {
-        var scoreEl = document.createElement("p");
-        scoreList.appendChild(scoreEl);
-        scoreEl.textContent = highscores[i];
-    }
+    const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    highscores.sort()
 };
 
-
-// Event Listeners
-startBtn.addEventListener("click", function(event) {
+startBtn.addEventListener("click", function (event) {
     event.preventDefault();
+    showTime();
     state = "quiz";
     displayState();
 });
 
-answerA.addEventListener('click', function(event) {
-    var element = event.target;
-    if (element.matches("button")) {
+answerA.addEventListener('click', function (event) {
+    const element = event.target;
+    if (element.matches("li")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -191,9 +174,9 @@ answerA.addEventListener('click', function(event) {
     }
 });
 
-answerB.addEventListener('click', function(event) {
-    var element = event.target;
-    if (element.matches("button")) {
+answerB.addEventListener('click', function (event) {
+    const element = event.target;
+    if (element.matches("li")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -203,9 +186,9 @@ answerB.addEventListener('click', function(event) {
     }
 });
 
-answerC.addEventListener('click', function(event) {
-    var element = event.target;
-    if (element.matches("button")) {
+answerC.addEventListener('click', function (event) {
+    const element = event.target;
+    if (element.matches("li")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -215,9 +198,9 @@ answerC.addEventListener('click', function(event) {
     }
 });
 
-answerD.addEventListener('click', function(event) {
-    var element = event.target;
-    if (element.matches("button")) {
+answerD.addEventListener('click', function (event) {
+    const element = event.target;
+    if (element.matches("li")) {
         position++;
         reward.textContent = "";
         if (position < questionList.length) {
@@ -227,26 +210,14 @@ answerD.addEventListener('click', function(event) {
     }
 });
 
-scoreBtn.addEventListener("click", function(event) {
+scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    var userScore = timeLeft + " — " + initials.value.trim();
-    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    const userScore = timeLeft + " — " + initials.value.trim();
+    const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     highscores.push(userScore);
     localStorage.setItem("highscores", JSON.stringify(highscores));
     state = "score";
     displayState();
 });
-
-backToStart.addEventListener("click", function(event) {
-    event.preventDefault();
-    state = "start";
-    displayState();
-});
-
-backToScores.addEventListener("click", function(event){
-    event.preventDefault();
-    state = "score";
-    displayState();
-})
 
 init();
