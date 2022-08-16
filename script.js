@@ -14,7 +14,7 @@ const reward = document.querySelector("#reward");
 const questions = [
     {
         question: "Who?",
-        A: "A 1",
+        A: "A",
         B: "B",
         C: "C",
         D: "D",
@@ -22,19 +22,43 @@ const questions = [
     },
     {
         question: "Where?",
-        A: "A 2",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        answer: "B"
+    },
+    {
+        question: "Why?",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        answer: "C"
+    },
+    {
+        question: "Who?",
+        A: "A",
         B: "B",
         C: "C",
         D: "D",
         answer: "A"
     },
     {
-        question: "Why?",
-        A: "A 3",
+        question: "Where?",
+        A: "A",
         B: "B",
         C: "C",
         D: "D",
-        answer: "A"
+        answer: "B"
+    },
+    {
+        question: "Why?",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        answer: "C"
     },
 ];
 
@@ -129,21 +153,13 @@ function showQuiz() {
 };
 
 function checkAnswer(selected) {
-    // TODO: Set up reward system
-
-    console.log(selected); 
-    // if (position >= 1 && (key[position]).dataset.clicked === "true") {
-    //     reward.textContent = "Correct";
-    // } else if (position >= 1) {
-    //     reward.textContent = "Incorrect";
-    //     timeLeft = timeLeft - 10;
-    // };
-
-    // answerA.dataset.clicked = "false";
-    // answerB.dataset.clicked = "false";
-    // answerC.dataset.clicked = "false";
-    // answerD.dataset.clicked = "false";
-}
+    if (selected === questions[position].answer) {
+        reward.textContent = "Correct";
+    } else if (position >= 1) {
+        reward.textContent = "Incorrect";
+        timeLeft = timeLeft - 10;
+    };
+};
 
 function showScore() {
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -160,25 +176,13 @@ startBtn.addEventListener("click", function (event) {
 questionsEl.addEventListener('click', function (event) {
     const element = event.target;
     if (element.matches("button")) {
-        position++;
         checkAnswer(element.value);
+        position++;
         if (position < questions.length) {
             showQuiz();
         };
     }
 });
-
-// answerB.addEventListener('click', function (event) {
-//     const element = event.target;
-//     if (element.matches("li")) {
-//         position++;
-//         reward.textContent = "";
-//         if (position < questionList.length) {
-//             answerB.dataset.clicked = "true";
-//             showQuiz();
-//         };
-//     }
-// });
 
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
