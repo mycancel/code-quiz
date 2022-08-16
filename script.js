@@ -15,45 +15,31 @@ const answerC = document.querySelector("#answerC");
 const answerD = document.querySelector("#answerD");
 const reward = document.querySelector("#reward");
 
-const questionList = [
-    "Who?",
-    "What?",
-    "When?",
-    "Where?",
-    "Why?",
-    "So What?"
-];
-const option1 = [
-    "Who? A",
-    "What? A",
-    "When? A",
-    "Where?",
-    "Why?",
-    "So What?"
-];
-const option2 = [
-    "Who? B",
-    "What? B",
-    "When? B",
-    "Where?",
-    "Why?",
-    "So What?"
-];
-const option3 = [
-    "Who? C",
-    "What? C",
-    "When? C",
-    "Where?",
-    "Why?",
-    "So What?"
-];
-const option4 = [
-    "Who? D",
-    "What? D",
-    "When? D",
-    "Where?",
-    "Why?",
-    "So What?"
+const questions = [
+    {
+        question: "Who?",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        answer: "A"
+    },
+    {
+        question: "Where?",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        answer: "A"
+    },
+    {
+        question: "Why?",
+        A: "A",
+        B: "B",
+        C: "C",
+        D: "D",
+        answer: "A"
+    },
 ];
 
 const position = 0;
@@ -123,31 +109,31 @@ function showTime() {
 };
 
 function showQuiz() {
-    title.textContent = "";
-    answerA.textContent = "";
-    answerB.textContent = "";
-    answerC.textContent = "";
-    answerD.textContent = "";
+    // title.textContent = "";
+    // answerA.textContent = "";
+    // answerB.textContent = "";
+    // answerC.textContent = "";
+    // answerD.textContent = "";
 
-    const key = ["", answerA, answerC, answerD, answerB, answerA, answerD];
+    // const key = ["", answerA, answerC, answerD, answerB, answerA, answerD];
 
-    if (position >= 1 && (key[position]).dataset.clicked === "true") {
-        reward.textContent = "Correct";
-    } else if (position >= 1) {
-        reward.textContent = "Incorrect";
-        timeLeft = timeLeft - 10;
-    };
+    // if (position >= 1 && (key[position]).dataset.clicked === "true") {
+    //     reward.textContent = "Correct";
+    // } else if (position >= 1) {
+    //     reward.textContent = "Incorrect";
+    //     timeLeft = timeLeft - 10;
+    // };
 
-    answerA.dataset.clicked = "false";
-    answerB.dataset.clicked = "false";
-    answerC.dataset.clicked = "false";
-    answerD.dataset.clicked = "false";
+    // answerA.dataset.clicked = "false";
+    // answerB.dataset.clicked = "false";
+    // answerC.dataset.clicked = "false";
+    // answerD.dataset.clicked = "false";
 
-    title.textContent = questionList[position];
-    answerA.textContent = option1[position];
-    answerB.textContent = option2[position];
-    answerC.textContent = option3[position];
-    answerD.textContent = option4[position];
+    // title.textContent = questionList[position];
+    // answerA.textContent = option1[position];
+    // answerB.textContent = option2[position];
+    // answerC.textContent = option3[position];
+    // answerD.textContent = option4[position];
 };
 
 function showScore() {
