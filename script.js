@@ -105,12 +105,6 @@ function showTime() {
 };
 
 function showQuiz() {
-    // <h2 id="question-title"></h2>
-    // <button id="answerA" class="choice" data-clicked="false"></button>
-    // <button id="answerB" class="choice" data-clicked="false"></button>
-    // <button id="answerC" class="choice" data-clicked="false"></button>
-    // <button id="answerD" class="choice" data-clicked="false"></button>
-
     // Reset questionsEl
     questionsEl.innerHTML = null;
     // Create Elements
@@ -125,17 +119,19 @@ function showQuiz() {
     answerB.innerHTML = questions[position].B;
     answerC.innerHTML = questions[position].C;
     answerD.innerHTML = questions[position].D;
+    // Set value of answers
+    answerA.value = questions[position].A;
+    answerB.value = questions[position].B;
+    answerC.value = questions[position].C;
+    answerD.value = questions[position].D;
     // Append elements to questionsEl
     questionsEl.append(title, answerA, answerB, answerC, answerD);
+};
 
+function checkAnswer(selected) {
     // TODO: Set up reward system
 
-    // title.textContent = "";
-    // answerA.textContent = "";
-    // answerB.textContent = "";
-    // answerC.textContent = "";
-    // answerD.textContent = "";
-
+    console.log(selected); 
     // if (position >= 1 && (key[position]).dataset.clicked === "true") {
     //     reward.textContent = "Correct";
     // } else if (position >= 1) {
@@ -147,13 +143,7 @@ function showQuiz() {
     // answerB.dataset.clicked = "false";
     // answerC.dataset.clicked = "false";
     // answerD.dataset.clicked = "false";
-
-    // title.textContent = questionList[position];
-    // answerA.textContent = option1[position];
-    // answerB.textContent = option2[position];
-    // answerC.textContent = option3[position];
-    // answerD.textContent = option4[position];
-};
+}
 
 function showScore() {
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -171,7 +161,7 @@ questionsEl.addEventListener('click', function (event) {
     const element = event.target;
     if (element.matches("button")) {
         position++;
-        // reward.textContent = "";
+        checkAnswer(element.value);
         if (position < questions.length) {
             showQuiz();
         };
