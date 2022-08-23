@@ -14,9 +14,10 @@ const scoreFromStart = document.querySelector('#scores-from-start');
 const timerEl = document.querySelector("#timer");
 const questionsEl = document.querySelector("#questions");
 const reward = document.querySelector("#reward");
-const initials = document.querySelector("#initials");
 let position = 0;
 let timeLeft = 60;
+const initials = document.querySelector("#initials");
+const scoreList = document.querySelector('#scoreList');
 
 const questions = [
     {
@@ -137,9 +138,12 @@ function showScore() {
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     // Sort scores from highest to lowest
     highscores.sort((a, b) => b.score - a.score);
-    console.log(highscores);
-
-    // TODO: Scores need to be shown on the score page
+    // Score populate the scoreboard
+    highscores.forEach((score) => {
+        const scoreLi = document.createElement('li');
+        scoreLi.innerHTML = score.user.toUpperCase() + " — " + score.score;
+        scoreList.append(scoreLi);
+    });
 };
 
 // Changes state to update contents of the page
