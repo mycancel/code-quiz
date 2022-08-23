@@ -5,10 +5,11 @@ const endScreen = document.querySelector("#ending");
 const scoreScreen = document.querySelector("#scoreboard");
 let state = "start";
 
-// Buttons to start quiz, submit score, and go to scoreboard
+// Buttons switch states
 const startBtn = document.querySelector("#start");
 const scoreBtn = document.querySelector("#to-scoreboard");
 const scoreFromStart = document.querySelector('#scores-from-start');
+const backToStart = document.querySelector('#to-start');
 
 // All elements for quiz or score
 const timerEl = document.querySelector("#timer");
@@ -221,5 +222,12 @@ scoreFromStart.addEventListener("click", function (event) {
     state = "score";
     displayState();
 });
+
+// Back to Start button on score state
+backToStart.addEventListener("click", function (event) {
+    event.preventDefault();
+    state = "start";
+    displayState();
+})
 
 init();
