@@ -5,9 +5,10 @@ const endScreen = document.querySelector("#ending");
 const scoreScreen = document.querySelector("#scoreboard");
 let state = "start";
 
-// Buttons to start quiz and submit score
+// Buttons to start quiz, submit score, and go to scoreboard
 const startBtn = document.querySelector("#start");
 const scoreBtn = document.querySelector("#to-scoreboard");
+const scoreFromStart = document.querySelector('#scores-from-start');
 
 // All elements for quiz or score
 const timerEl = document.querySelector("#timer");
@@ -131,10 +132,14 @@ function checkAnswer(selected) {
 };
 
 // Score State Function — Retrieves scores and populates page
-// TODO: Scores need to be shown on the score page
 function showScore() {
+    // Retrieve scores from local storage
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-    highscores.sort()
+    // Sort scores from highest to lowest
+    highscores.sort((a, b) => b.score - a.score);
+    console.log(highscores);
+
+    // TODO: Scores need to be shown on the score page
 };
 
 // Changes state to update contents of the page
@@ -181,7 +186,7 @@ startBtn.addEventListener("click", function (event) {
 });
 
 // Checks answer, progresses quiz
-questionsEl.addEventListener('click', function (event) {
+questionsEl.addEventListener("click", function (event) {
     const element = event.target;
     if (element.matches("button")) {
         checkAnswer(element.value);
@@ -192,11 +197,13 @@ questionsEl.addEventListener('click', function (event) {
     }
 });
 
-// TODO: Fix score button
 // Saves score, changes state to score
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    const userScore = timeLeft + " — " + initials.value.trim();
+    const userScore = {
+        score: timeLeft,
+        user: initials.value.trim()
+    };
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     highscores.push(userScore);
     localStorage.setItem("highscores", JSON.stringify(highscores));
@@ -204,6 +211,11 @@ scoreBtn.addEventListener("click", function (event) {
     displayState();
 });
 
-// TODO: add event listener for button on start state
+// Scoreboard button on start state
+scoreFromStart.addEventListener("click", function (event) {
+    event.preventDefault();
+    state = "score";
+    displayState();
+});
 
 init();
