@@ -1,5 +1,10 @@
 :root {
     --offwhite: rgb(220 225 222);
+    --lightblue: rgb(142, 202, 230);
+    --teal: rgb(33, 158, 188);
+    --darkblue: rgb(2, 48, 71);
+    --orange: rgb(255, 183, 3);
+    --darkorange: rgb(251, 133, 0);
     --heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -7,4 +12,50 @@ body {
     background-color: var(--offwhite);
     margin: 0px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 4px;
+    color: var(--darkblue);
+}
+
+p {
+    font-size: 1rem;
+    margin: 8px;
+    line-height: 1.5;
+    color: var(--darkblue);
+}
+
+#beginning {
+    text-align: center;
+    margin: 2rem;
+    padding: 2rem;
+    background-color: var(--lightblue);
+    border-radius: 4px;
+}
+
+button {
+    padding: 1rem;
+    margin: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--darkblue);
+    color: var(--offwhite);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translate(-1px, -1px) scale(1.05, 1.05);
+    box-shadow: 4px 4px 4px var(--orange);
+}
+#start {
+    background-color: var(--orange);
+    color: var(--darkblue);
+}
+
+#start:hover {
+    box-shadow: 4px 4px 4px var(--darkblue);
 }
