@@ -1,15 +1,21 @@
+// Query Selected State Elements
 const startScreen = document.querySelector("#beginning");
 const quizScreen = document.querySelector("#quiz");
 const endScreen = document.querySelector("#ending");
 const scoreScreen = document.querySelector("#scoreboard");
+let state = "start";
+
+// Buttons to start quiz and submit score
 const startBtn = document.querySelector("#start");
 const scoreBtn = document.querySelector("#to-scoreboard");
 
+// All elements for quiz or score
 const timerEl = document.querySelector("#timer");
-const initials = document.querySelector("#initials");
-
 const questionsEl = document.querySelector("#questions");
 const reward = document.querySelector("#reward");
+const initials = document.querySelector("#initials");
+let position = 0;
+let timeLeft = 60;
 
 const questions = [
     {
@@ -62,14 +68,77 @@ const questions = [
     },
 ];
 
-let position = 0;
+// Quiz State Function — Timer for quiz
+function showTime() {
+    const timeInterval = setInterval(function () {
+        timerEl.textContent = timeLeft;
+        timeLeft--;
 
-// Local memory of all highscores
-const pastScores = JSON.parse(localStorage.getItem("highscores")) || [];
+        // Timer count cannot be a negative number (for the score)
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        };
 
+        // When the timer ends, the quiz ends
+        if (timeLeft === 0) {
+            clearInterval(timeInterval);
+            state = "end";
+            displayState();
+        };
+
+        // If all questions are answered, the quiz ends
+        if (position === questions.length){
+            clearInterval(timeInterval);
+            state = "end";
+            displayState();
+        };
+    }, 1000)
+};
+
+// Quiz State Function — Displays quiz elements
+function showQuiz() {
+    // Reset questionsEl
+    questionsEl.innerHTML = null;
+    // Create Elements
+    const title = document.createElement('h2');
+    const answerA = document.createElement('button');
+    const answerB = document.createElement('button');
+    const answerC = document.createElement('button');
+    const answerD = document.createElement('button');
+    // Set text of elements
+    title.innerHTML = questions[position].question;
+    answerA.innerHTML = questions[position].A;
+    answerB.innerHTML = questions[position].B;
+    answerC.innerHTML = questions[position].C;
+    answerD.innerHTML = questions[position].D;
+    // Set value of answers
+    answerA.value = questions[position].A;
+    answerB.value = questions[position].B;
+    answerC.value = questions[position].C;
+    answerD.value = questions[position].D;
+    // Append elements to questionsEl
+    questionsEl.append(title, answerA, answerB, answerC, answerD);
+};
+
+// Quiz State Function — Communicates Correct/Incorrect
+function checkAnswer(selected) {
+    if (selected === questions[position].answer) {
+        reward.textContent = "Correct";
+    } else {
+        reward.textContent = "Incorrect";
+        timeLeft = timeLeft - 10;
+    };
+};
+
+// Score State Function — Retrieves scores and populates page
+// TODO: Scores need to be shown on the score page
+function showScore() {
+    const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    highscores.sort()
+};
+
+// Changes state to update contents of the page
 // Instructor Provided Code (functions displayState and init): Anthony Cooper
-let state = "start";
-
 function displayState() {
     if (state === "start") {
         startScreen.style.display = "block";
@@ -103,69 +172,7 @@ function init() {
     displayState();
 };
 
-let timeLeft = 60;
-
-function showTime() {
-    const timeInterval = setInterval(function () {
-        timerEl.textContent = timeLeft;
-        timeLeft--;
-
-        if (timeLeft < 0) {
-            timeLeft = 0;
-        };
-
-        if (timeLeft === 0) {
-            clearInterval(timeInterval);
-            state = "end";
-            displayState();
-        };
-
-        if (position === questions.length){
-            clearInterval(timeInterval);
-            state = "end";
-            displayState();
-        };
-    }, 1000)
-};
-
-function showQuiz() {
-    // Reset questionsEl
-    questionsEl.innerHTML = null;
-    // Create Elements
-    const title = document.createElement('h2');
-    const answerA = document.createElement('button');
-    const answerB = document.createElement('button');
-    const answerC = document.createElement('button');
-    const answerD = document.createElement('button');
-    // Set text of elements
-    title.innerHTML = questions[position].question;
-    answerA.innerHTML = questions[position].A;
-    answerB.innerHTML = questions[position].B;
-    answerC.innerHTML = questions[position].C;
-    answerD.innerHTML = questions[position].D;
-    // Set value of answers
-    answerA.value = questions[position].A;
-    answerB.value = questions[position].B;
-    answerC.value = questions[position].C;
-    answerD.value = questions[position].D;
-    // Append elements to questionsEl
-    questionsEl.append(title, answerA, answerB, answerC, answerD);
-};
-
-function checkAnswer(selected) {
-    if (selected === questions[position].answer) {
-        reward.textContent = "Correct";
-    } else {
-        reward.textContent = "Incorrect";
-        timeLeft = timeLeft - 10;
-    };
-};
-
-function showScore() {
-    const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-    highscores.sort()
-};
-
+// Starts the quiz
 startBtn.addEventListener("click", function (event) {
     event.preventDefault();
     showTime();
@@ -173,6 +180,7 @@ startBtn.addEventListener("click", function (event) {
     displayState();
 });
 
+// Checks answer, progresses quiz
 questionsEl.addEventListener('click', function (event) {
     const element = event.target;
     if (element.matches("button")) {
@@ -184,6 +192,8 @@ questionsEl.addEventListener('click', function (event) {
     }
 });
 
+// TODO: Fix score button
+// Saves score, changes state to score
 scoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
     const userScore = timeLeft + " — " + initials.value.trim();
@@ -193,5 +203,7 @@ scoreBtn.addEventListener("click", function (event) {
     state = "score";
     displayState();
 });
+
+// TODO: add event listener for button on start state
 
 init();
