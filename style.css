@@ -28,7 +28,7 @@ p {
     color: var(--darkblue);
 }
 
-#beginning {
+#beginning, #ending {
     text-align: center;
     margin: 2rem;
     padding: 2rem;
@@ -97,6 +97,11 @@ button:hover {
     color: var(--darkblue);
     background-color: var(--darkorange);
     border-radius: 4px;
+}
+
+#ending h2, #ending input {
+    margin: 1rem;
+    font-size: large;
 }
 
 @media screen and (max-width: 1040px) {
