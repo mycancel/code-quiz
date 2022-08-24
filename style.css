@@ -59,3 +59,44 @@ button:hover {
 #start:hover {
     box-shadow: 4px 4px 4px var(--darkblue);
 }
+
+#quiz {
+    text-align: center;
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+#questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#questions h2, #reward {
+    margin: 1rem;
+    min-height: 2rem;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#questions button {
+    background-color: var(--lightblue);
+    color: var(--darkblue);
+    border: solid 2px var(--darkblue);
+    min-width: 50%;
+}
+
+/* TODO: Style Reward based on correct or incorrect */
+
+@media screen and (max-width: 1040px) {
+    #questions button {
+        min-width: 75%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    #questions button {
+        min-width: 100%;
+    }
+}
