@@ -126,8 +126,10 @@ function showQuiz() {
 // Quiz State Function — Communicates Correct/Incorrect
 function checkAnswer(selected) {
     if (selected === questions[position].answer) {
+        reward.classList = "correct";
         reward.textContent = "Correct";
     } else {
+        reward.classList = "incorrect";
         reward.textContent = "Incorrect";
         timeLeft = timeLeft - 10;
     };

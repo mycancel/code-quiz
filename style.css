@@ -87,7 +87,17 @@ button:hover {
     min-width: 50%;
 }
 
-/* TODO: Style Reward based on correct or incorrect */
+.correct {
+    color: var(--darkblue);
+    background-color: var(--orange);
+    border-radius: 4px;
+}
+
+.incorrect {
+    color: var(--darkblue);
+    background-color: var(--darkorange);
+    border-radius: 4px;
+}
 
 @media screen and (max-width: 1040px) {
     #questions button {
