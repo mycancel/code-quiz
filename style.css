@@ -11,8 +11,8 @@
 body {
     background-color: var(--offwhite);
     margin: 0px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    overflow: hidden;
+    font-family: 'Roboto Mono', monospace, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -28,7 +28,7 @@ p {
     color: var(--darkblue);
 }
 
-#beginning, #ending {
+#beginning, #ending, #scoreboard {
     text-align: center;
     margin: 2rem;
     padding: 2rem;
@@ -102,6 +102,17 @@ button:hover {
 #ending h2, #ending input {
     margin: 1rem;
     font-size: large;
+}
+
+#scoreboard h2 {
+    margin-bottom: 1rem;
+    font-size: 32px;
+    color: var(--darkblue);
+}
+
+#scoreboard li {
+    font-size: 20px;
+    margin-bottom: .5rem;
 }
 
 @media screen and (max-width: 1040px) {
