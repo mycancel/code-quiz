@@ -20,7 +20,7 @@ h1 {
     color: var(--darkblue);
 }
 
-p {
+p:not(#reward) {
     font-size: 1rem;
     margin: 8px;
     line-height: 1.5;
@@ -69,14 +69,14 @@ button:hover {
     border-radius: 4px;
 }
 
-#questions {
+#questions, #ending {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#questions h2, #reward {
-    margin: 1rem;
+#questions h2 {
+    margin-top: 1rem;
     min-height: 2rem;
     font-size: larger;
     font-weight: bold;
@@ -89,16 +89,23 @@ button:hover {
     min-width: 50%;
 }
 
-.correct {
+#reward {
+    min-height: 2rem;
+    line-height: 1.5;
+    font-size: larger;
+    font-weight: bold;
     color: var(--darkblue);
-    background-color: var(--orange);
+    width: 50%;
     border-radius: 4px;
+    margin: auto;
+}
+
+.correct {
+    background-color: var(--orange);
 }
 
 .incorrect {
-    color: var(--darkblue);
     background-color: var(--darkorange);
-    border-radius: 4px;
 }
 
 #ending h2, #ending input {
@@ -133,5 +140,8 @@ button:hover {
         top: 0%;
         left: 0%;
         min-height: 100vh;
+    }
+    #reward {
+        width: 80%;
     }
 }
