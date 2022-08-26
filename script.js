@@ -137,6 +137,8 @@ function checkAnswer(selected) {
 
 // Score State Function — Retrieves scores and populates page
 function showScore() {
+    // Resets scoreList
+    scoreList.innerHTML = null;
     // Retrieve scores from local storage
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     // Sort scores from highest to lowest
