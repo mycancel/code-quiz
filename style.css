@@ -5,7 +5,6 @@
     --darkblue: rgb(2, 48, 71);
     --orange: rgb(255, 183, 3);
     --darkorange: rgb(251, 133, 0);
-    --heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -30,7 +29,10 @@ p {
 
 #beginning, #ending, #scoreboard {
     text-align: center;
-    margin: 2rem;
+    position: absolute;
+    width: 50%;
+    top: 25%;
+    left: 25%;
     padding: 2rem;
     background-color: var(--lightblue);
     border-radius: 4px;
@@ -124,5 +126,12 @@ button:hover {
 @media screen and (max-width: 760px) {
     #questions button {
         min-width: 100%;
+    }
+    #beginning, #ending, #scoreboard {
+        position: relative;
+        width: 100%;
+        top: 0%;
+        left: 0%;
+        min-height: 100vh;
     }
 }
