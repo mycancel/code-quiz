@@ -80,6 +80,8 @@ button:hover {
     min-height: 2rem;
     font-size: larger;
     font-weight: bold;
+    width: 50%;
+    line-height: 1.5;
 }
 
 #questions button {
@@ -133,6 +135,10 @@ button:hover {
 @media screen and (max-width: 760px) {
     #questions button {
         min-width: 100%;
+    }
+    #questions h2 {
+        width: 100%;
+        margin-bottom: 1rem;
     }
     #beginning, #ending, #scoreboard {
         position: relative;
