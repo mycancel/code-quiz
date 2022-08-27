@@ -22,52 +22,52 @@ const scoreList = document.querySelector('#scoreList');
 
 const questions = [
     {
-        question: "Who?",
-        A: "A",
-        B: "B",
-        C: "C",
-        D: "D",
-        answer: "A"
+        question: 'What does "this" refer to in a global execution context?',
+        A: "The variable",
+        B: "The function",
+        C: "The global object",
+        D: "The local object",
+        answer: "The global object"
     },
     {
-        question: "Where?",
-        A: "A",
-        B: "B",
-        C: "C",
-        D: "D",
-        answer: "B"
+        question: "A(n) _____ keeps track of the order of function calls within a script.",
+        A: "callback queue",
+        B: "call stack",
+        C: "data structure",
+        D: "event loop",
+        answer: "call stack"
     },
     {
-        question: "Why?",
-        A: "A",
-        B: "B",
-        C: "C",
-        D: "D",
-        answer: "C"
+        question: "A(n) ____ defers actions so that new items are added to the bottom fo the collection while the items added first are first to be executed.",
+        A: "data structure",
+        B: "call stack",
+        C: "callback queue",
+        D: "event loop",
+        answer: "callback queue"
     },
     {
-        question: "Who?",
-        A: "A",
-        B: "B",
-        C: "C",
-        D: "D",
-        answer: "A"
+        question: "Which term organizes function calls so that the last in is the first out (LIFO)?",
+        A: "callback queue",
+        B: "event loop",
+        C: "data structure",
+        D: "call stack",
+        answer: "call stack"
     },
     {
-        question: "Where?",
-        A: "A",
-        B: "B",
-        C: "C",
-        D: "D",
-        answer: "B"
+        question: "The ____ is responsible for executing code, collecting and processing events, and executing queued sub-tasks.",
+        A: "callback queue",
+        B: "call stack",
+        C: "data structure",
+        D: "event loop",
+        answer: "event loop"
     },
     {
-        question: "Why?",
-        A: "A",
-        B: "B",
-        C: "C",
-        D: "D",
-        answer: "C"
+        question: "A(n) _______ creates a loop where the function is called again. It is used for finding patterns and creating search algorithms.",
+        A: "recursive call",
+        B: "base condition",
+        C: "memoization",
+        D: "algorithm  ",
+        answer: "recursive call"
     },
 ];
 
