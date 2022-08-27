@@ -3,7 +3,7 @@ const startScreen = document.querySelector("#beginning");
 const quizScreen = document.querySelector("#quiz");
 const endScreen = document.querySelector("#ending");
 const scoreScreen = document.querySelector("#scoreboard");
-let state = "start";
+let state = "end";
 
 // Buttons switch states
 const startBtn = document.querySelector("#start");
