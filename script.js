@@ -159,11 +159,12 @@ function displayState() {
         quizScreen.style.display = "none";
         endScreen.style.display = "none";
         scoreScreen.style.display = "none";
-        // My contribution: Reset Position, Timer, and Reward text before starting again
+        // My contribution: Reset Position, Timer, Reward text, and initials value before starting again
         position = 0;
         timeLeft = 60;
         reward.textContent = null;
         reward.classList = null;
+        initials.value = null;
     }
     if (state === "quiz") {
         startScreen.style.display = "none";
