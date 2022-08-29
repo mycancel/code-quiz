@@ -14,6 +14,12 @@ This code quiz has four states: the start screen, the quiz, the end screen, and 
 
 ## Visuals
 
+![Opening Page](./images/code-quiz1.png)
+
+![Quiz](./images/code-quiz2.png)
+
+![Scoreboard](./images/code-quiz3.png)
+
 ## Authors and Acknowledgements
 
 The functions ```displayState()``` and ```init()``` were jumpstarted by the class instructor, Anthony Cooper. My additions to these functions were the function calls within ```displayState()```.
