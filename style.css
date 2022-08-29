@@ -150,11 +150,12 @@ button:hover {
         font-size: larger;
         margin-top: 2rem;
     }
-    button, #ending h2, #ending input {
+    button, #ending h2 {
         font-size: larger;
     }
     #ending input {
-        padding: .25rem 3rem;
+        width: 30%;
+        line-height: 2;
     }
 }
 
@@ -172,6 +173,9 @@ button:hover {
         top: 0%;
         left: 0%;
         min-height: 100vh;
+    }
+    #ending input {
+        width: 40%;
     }
     #reward {
         width: 80%;
